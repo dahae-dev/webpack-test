@@ -1,0 +1,6 @@
+{
+  "presets": [
+    "@babel/preset-env", // Which helps babel to convert ES6, ES7 and ES8 code to ES5
+    "@babel/preset-react" // Which transforms JSX to JavaScript
+  ]
+}
