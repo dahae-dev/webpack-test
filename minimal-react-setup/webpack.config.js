@@ -1,8 +1,14 @@
-const webpack = require('webpack');
-const path = require('path');
+// const webpack = require('webpack');
+// const path = require('path');
+const HTMLWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  // entry: './src/index.js',
+  // output: {
+  //   path: path.join(__dirname, 'dist'), // __dirname + '/dist',
+  //   publicPath: '/',
+  //   filename: 'bundle.js'
+  // },
   module: {
     rules: [
       {
@@ -17,24 +23,27 @@ module.exports = {
           'css-loader', // Allows webpack to load our CSS assets
           'sass-loader' // help webpack to compile sass to css. dependent on another package node-sass
         ] 
+      },
+      {
+        test: /\.html$/,
+        use: 'html-loader' // tell Webpack to produce an HTML page
       }
     ]
   },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  },
-  output: {
-    path: path.join(__dirname, 'dist'), // __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
+  // resolve: {
+  //   extensions: ['*', '.js', '.jsx']
+  // },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin(),
+    new HTMLWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
   ],
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'), // './dist',
-    hot: true
-  },
+  // devServer: {
+  //   contentBase: path.join(__dirname, 'dist'), // './dist',
+  //   hot: true
+  // },
   devtool: 'cheap-module-eval-source-map'
 }
 
